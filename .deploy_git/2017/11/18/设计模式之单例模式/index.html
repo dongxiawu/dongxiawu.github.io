@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="设计模式,单例模式,线程安全," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="保证一个类仅有一个实例，并提供一个访问它的全局访问点。 艾迪生维斯理 《设计模式》">
+<meta name="keywords" content="设计模式,单例模式,线程安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式之单例模式">
+<meta property="og:url" content="https://dongxiawu.github.io/2017/11/18/设计模式之单例模式/index.html">
+<meta property="og:site_name" content="Android 从入门到精通">
+<meta property="og:description" content="保证一个类仅有一个实例，并提供一个访问它的全局访问点。 艾迪生维斯理 《设计模式》">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dongxiawu.github.io/2017/11/18/设计模式之单例模式/你是我的唯一.png">
+<meta property="og:image" content="https://dongxiawu.github.io/2017/11/18/设计模式之单例模式/singleton.png">
+<meta property="og:updated_time" content="2017-11-25T11:02:42.952Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式之单例模式">
+<meta name="twitter:description" content="保证一个类仅有一个实例，并提供一个访问它的全局访问点。 艾迪生维斯理 《设计模式》">
+<meta name="twitter:image" content="https://dongxiawu.github.io/2017/11/18/设计模式之单例模式/你是我的唯一.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dongxiawu.github.io/2017/11/18/设计模式之单例模式/"/>
+
+
+
+
+
+  <title>设计模式之单例模式 | Android 从入门到精通</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9ea276f4c28c677ec59abff5fb178bea";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Android 从入门到精通</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">冬夏的个人小站</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dongxiawu.github.io/2017/11/18/设计模式之单例模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冬夏">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Android 从入门到精通">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">设计模式之单例模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-18T22:44:47+08:00">
+                2017-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <img src="/2017/11/18/设计模式之单例模式/你是我的唯一.png">
+<blockquote><p>保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p>
+<footer><strong>艾迪生维斯理 《设计模式》</strong></footer></blockquote>
+<a id="more"></a>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>在我们日常编写程序的时候，经常需要一种这样的对象。我们希望整个系统只有一个这样的对象，不论在什么时候和不论在哪里获取这个对象的时候，获得的都是同一个对象。</p>
+<p>比如说系统的任务管理器，我们希望整个系统只有一个任务管理器，不论什么时候打开任务管理器，都可以看到当前系统的所有任务，而不是把任务分散在很多个任务管理器里。</p>
+<p>又比如说打印机，当电脑连接上一台打印机的时候，我们会希望不管是在文档A里使用或者在文档B里使用的时候，都是同一台打印机，而且能够按顺序打印。</p>
+<p>我们把这种类似的需求不断总结并归纳起来，就成了单例模式。</p>
+<p>单例模式可以说是所有设计模式里面最简单的了，但是要灵活并且准确地使用它也不是那么容易的。</p>
+<p>首先观察一下单例模式的 UML 图。</p>
+<img src="/2017/11/18/设计模式之单例模式/singleton.png">
+<p>从 UML 图中我们可以观察到单例模式的几个特点</p>
+<ol>
+<li><p>私有的、静态的实例对象</p>
+</li>
+<li><p>私有的构造函数</p>
+</li>
+<li><p>公有的、静态的获取实例对象的方法</p>
+</li>
+</ol>
+<p>那么，什么样的代码可以同时满足这几个特点呢？</p>
+<h1 id="懒汉模式"><a href="#懒汉模式" class="headerlink" title="懒汉模式"></a>懒汉模式</h1><p>所谓的懒汉模式，就是一开始并不实例化对象，等到需要使用的时候才实例化。</p>
+<pre><code>{% codeblock 懒汉模式 lang:java %}
+    public class Singleton {
+
+      private static Singleton instance = null;
+
+      private Singleton(){}
+
+      public static Singleton getInstance() {
+          if (instance == null)
+          {
+              instance = new Singleton();
+          }
+          return instance;
+      }
+    }
+    {% endcodeblock %}
+</code></pre><p>从上面的代码我们可以看到，当第一次获取 Singleton 实例的时候，instance 为空，将创建 Singleton 对象，并赋值给 instance 变量。以后的每次一获取都将获得第一次创建的 Singleton 对象，从而实现了唯一性。</p>
+<h2 id="线程安全验证"><a href="#线程安全验证" class="headerlink" title="线程安全验证"></a>线程安全验证</h2><p>仔细想想这段代码，可能存在什么问题呢？</p>
+<p>假设有这么一种情况， Singleton 对象还没有创建，这时候有很多个线程同时获取 Singleton 对象，这时候会发生什么呢？</p>
+<p>用下面的代码可以验证</p>
+<pre><code>{% codeblock 懒汉模式 线程安全验证 lang:java %}
+    public class Singleton {
+      private static int count = 0;
+
+      private static Singleton instance = null;
+
+      private Singleton(){
+          try {
+              Thread.sleep(10);
+          }catch (InterruptedException e){
+
+          }
+          System.out.println("Singleton 私有构造方法被调用 " + ++count + "次");
+      }
+
+      public static Singleton getInstance() {
+          if (instance == null)
+          {
+              instance = new Singleton();
+          }
+          return instance;
+      }
+    }
+
+
+    public class Test {
+      public static void main(String[] args){
+
+          Runnable runnable = new Runnable() {
+              @Override
+              public void run() {
+                  Singleton singleton = Singleton.getInstance();
+                  System.out.println("当前线程：" + Thread.currentThread().getName() +
+                          " Singleton: " + singleton.hashCode());
+              }
+          };
+
+          for (int i = 0; i < 10; i++){
+              new Thread(runnable).start();
+          }
+      }
+    }
+    {% endcodeblock %}
+</code></pre><p>从上面的代码可以看到，我们对懒汉模式做了一点小修正，在创建 Singleton 对象的时候让当前线程休眠了10ms，这主要是因为计算机运算速度太快了，不让当前线程休眠一下的话很难出现想要的结果。关于休眠我们可以把它想象成创建对象的过程中需要消耗一定的时间。</p>
+<p>运算部分结果如下：</p>
+<pre><code>{% codeblock 懒汉模式 线程安全验证结果 lang:java %}
+    Singleton 私有构造方法被调用 1次
+    当前线程：Thread-1 Singleton: 2044439889
+    Singleton 私有构造方法被调用 4次
+    Singleton 私有构造方法被调用 3次
+    Singleton 私有构造方法被调用 2次
+    当前线程：Thread-0 Singleton: 605315508
+    当前线程：Thread-2 Singleton: 2298428
+    当前线程：Thread-3 Singleton: 1005746524
+    当前线程：Thread-4 Singleton: 1005746524
+    当前线程：Thread-5 Singleton: 1005746524
+    当前线程：Thread-6 Singleton: 1005746524
+    当前线程：Thread-7 Singleton: 1005746524
+    当前线程：Thread-8 Singleton: 1005746524
+    当前线程：Thread-9 Singleton: 1005746524
+    {% endcodeblock %}
+</code></pre><p>从上面的结果可以看到，Singleton 的私有构造方法被调用了不止一次。对此的解释是，当第一次获取 Singleton 对象还没完成的时候，线程被系统挂起了，这时候有其他线程刚好也获取了 Singleton 对象，那么就会产生多个 Singleton 对象。</p>
+<p>由此我们可以得出结论：懒汉模式是 <em>非线程安全</em> 的。</p>
+<h1 id="同步方法"><a href="#同步方法" class="headerlink" title="同步方法"></a>同步方法</h1><p>为了解决懒汉模式非线程安全的缺点，就出现了改进的懒汉模式。其原理是当多个线程同时获取 Singleton 对象时，一次只让一个线程获取，其他线程都在等待，这样就解决了多线程下的对象获取问题。</p>
+<pre><code>{% codeblock 同步方法 lang:java %}
+    public class Singleton {
+      private static Singleton instance = null;
+
+      private Singleton(){}
+
+      public static synchronized Singleton getInstance() {
+          if (instance == null)
+          {
+              instance = new Singleton();
+          }
+          return instance;
+      }
+    }
+    {% endcodeblock %}
+</code></pre><p>我们通过 <em>synchronized</em> 关键字让 getInstance()方法一次只能让一个线程调用，但是随着而来的又有另外一个问题。</p>
+<p>那就是 <em>效率问题</em>，因为只有第一次获取 Singleton 对象时有可能发生线程安全问题，但是使用同步方法却让每次只让一个线程能访问getInstance()方法，而不管 Singleton 对象是不是已经被创建出来了。</p>
+<p>那么有没有办法能同时解决线程安全和效率问题呢？</p>
+<h1 id="双重校验"><a href="#双重校验" class="headerlink" title="双重校验"></a>双重校验</h1><p><em>双重校验</em> 方式就是为了解决懒汉模式的线程安全和效率问题而产生的。</p>
+<pre><code>{% codeblock 双重校验 lang:java %}
+    public class Singleton {
+
+      private static Singleton instance = null;
+
+      private Singleton(){}
+
+      public static Singleton getInstance() {
+          if (instance == null){
+              synchronized (Singleton.class){
+                  if (instance == null){
+                      instance = new Singleton();
+                  }
+              }
+          }
+          return instance;
+      }
+    }
+    {% endcodeblock %}
+</code></pre><p>双重校验就是将前面两种懒汉模式结合起来。当第一次获取 Singleton 对象时， instance 为空， 这时候为了解决可能存在的线程安全问题，同步了 Singleton 这个类对象。也就是说，同一时刻只能有一个线程能够执行 synchronized 之后的代码。同时因为同步代码外层有一个条件语句，所以同步代码只有在第一次获取 Singleton 对象的时候执行到，这样就解决了效率问题。</p>
+<p>但是这种方法还是有一个问题，那就是 <code>instance = new Singleton()</code> 这一行代码并不是原子性的</p>
+<p>具体来说，JVM执行这一行代码时主要做了三件事</p>
+<ol>
+<li>给 instance 分配内存空间</li>
+<li>调用 Singleton 的构造函数来初始化成员变量</li>
+<li>将 instance 变量指向分配的内存空间（执行完这一步之后 instance 就不为 null 了）</li>
+</ol>
+<p>由于 JVM 的指令优化存在，上面的第二点和第三点并不能保证一定按顺序执行。也就是说执行顺序有可能为 1-2-3 或者 1-3-2。</p>
+<p>假设是 1-3-2，那么如果执行到3的时候，线程被抢占了，有另外一个线程获取了单例对象（这时候 instance 不为 null，但是还没有初始化），那么自然就会出现错误。</p>
+<p>为了解决这个问题，我们只要将 instance 变量声明成 volatile 就可以了。</p>
+<p>‘private static volatile Singleton instance = null;’</p>
+<p>volatile 关键字主要有两个特性</p>
+<ol>
+<li>可见性：保证线程没有变量的本地副本，每次都去主内存获取最新版本</li>
+<li>禁止指令重排序：生成内存屏障</li>
+</ol>
+<p>很明显，我们这里利用的是 volatile 的第二个特性。</p>
+<p>特别注意的是只有在 Java 5 之后使用这种方式才是完全安全的，原因是 Java 5 之前的 Java 内存模型（Java Memory Model，JMM）存在缺陷，即使变量声明为 volatile 也不能完全避免重排序，这个问题在 Java 5 之后才修复。</p>
+<h1 id="恶汉模式"><a href="#恶汉模式" class="headerlink" title="恶汉模式"></a>恶汉模式</h1><p>这时候我们可以换个思路，既然懒汉模式是因为需要的时候才创建对象，所以才让程序有机会可以产生多个对象。那如果我一开始就把对象创建好了，不就行了吗？这就出现了恶汉模式。</p>
+<p>恶汉模式的意思是不管对象目前有没有使用，都会先创建出来。</p>
+<pre><code>{% codeblock 恶汉模式 lang:java %}
+    public class Singleton {
+
+      private static final Singleton instance = new Singleton();
+
+      private Singleton(){}
+
+      public static Singleton getInstance() {
+          return instance;
+      }
+    }
+    {% endcodeblock %}
+</code></pre><p>从代码中可以看到，由于在 Singleton 类加载时就创建了 Singleton 对象，所以恶汉模式是 <em>线程安全</em> 的。</p>
+<p>但是恶汉模式存在的问题就是不管目前对象有没有被使用，都被创建了出来，浪费了内存空间。</p>
+<h1 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h1><p>静态方法的单例模式和恶汉模式的原理一样，都是利用了classloader，在类加载的时候就创建了 Singleton 对象。</p>
+<pre><code>{% codeblock 静态方法 lang:java %}
+    public class Singleton {
+
+      private static Singleton instance = null;
+
+      static {
+          instance = new Singleton();
+      }
+      private Singleton(){}
+
+      public static Singleton getInstance() {
+          return instance;
+      }
+    }
+    {% endcodeblock %}
+</code></pre><h1 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h1><p>静态内部类的方法和上面两种方法既有相似的地方，也有不同的地方。</p>
+<pre><code>{% codeblock 静态内部类 lang:java %}
+    public class Singleton {
+
+      private static class SingletonHolder{
+          private static final Singleton INSTANCE = new Singleton();
+      }
+      private Singleton(){}
+
+      public static Singleton getInstance() {
+          return SingletonHolder.INSTANCE;
+      }
+    }
+    {% endcodeblock %}
+</code></pre><p>从代码种我们可以看到，静态内部类的方法和前两种方法一样，都是利用了classloader，在加载类的时候创建 Singleton 对象。</p>
+<p>不同的地方在于加载的类不同。静态内部类方法在加载 Singleton 类的时候不会创建 Singleton 对象。而是在加载 SingletonHolder 类的时候才会。那么 SingletonHolder 类是什么时候加载的呢？</p>
+<p>根据JVM（Java 虚拟机）的类加载规则，静态内部类只有在主动调用的时候才会加载。也就是说，在第一次调用 getInstance() 方法时才会加载 SingletonHolder 类，同时创建了 Singleton 对象。</p>
+<p>也可以说，静态内部类的方法利用JVM解决了前两种方法占用内存的问题。</p>
+<h2 id="防止单例受到攻击"><a href="#防止单例受到攻击" class="headerlink" title="防止单例受到攻击"></a>防止单例受到攻击</h2><p>到目前为止，我们所分析的所有单例模式都有一个前提，那就是调用者非常听话地使用了 Singleton.getInstance() 方法获取单例对象。但是在现实生活中是不是都是这样的呢？会不会有不怀好意的人使用其他方式破坏我们的单例模式呢？</p>
+<p>我们先思考一下，获取一个对象有几种方式</p>
+<ol>
+<li>使用 new 关键字</li>
+<li>通过反射调用</li>
+<li>序列化</li>
+</ol>
+<p>我们前面的单例模式都是通过第一种方式获取对象的，那么如果采用其他两种方式，之前的单例模式还安全吗？答案是否定的。</p>
+<h3 id="反射攻击"><a href="#反射攻击" class="headerlink" title="反射攻击"></a>反射攻击</h3><p>首先我们来看一下反射调用，以双重检验方式为例</p>
+<pre><code>{% codeblock 反射攻击 lang:java %}
+    public class Singleton {
+
+      private static volatile Singleton instance = null;
+
+      private Singleton(){}
+
+      public static Singleton getInstance() {
+          if (instance == null){
+              synchronized (Singleton.class){
+                  if (instance == null){
+                      instance = new Singleton();
+                  }
+              }
+          }
+          return instance;
+      }
+    }
+
+    public class Test {
+        public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException,
+                InvocationTargetException, InstantiationException{
+
+            Singleton singleton1 = Singleton.getInstance();
+
+            Class<?> classType = Singleton.class;
+            Constructor<?> constructor = classType.getDeclaredConstructor(null);
+            constructor.setAccessible(true);
+            Singleton singleton2 = (Singleton) constructor.newInstance();
+            System.out.println(singleton1 == singleton2);  //false
+        }
+    }
+    {% endcodeblock %}
+</code></pre><p>输出结果是</p>
+<pre><code>{% codeblock 反射攻击结果 lang:java %}
+    Singleton 私有构造方法被调用 1次
+    Singleton 私有构造方法被调用 2次
+    false
+    {% endcodeblock %}
+</code></pre><p>从结果可以看到，私有的构造函数被调用了两次，也就是说这样的单例模式并不安全。</p>
+<p>为了防止单例模式被反射攻击，我们可以添加一个标志位，在新建对象时判断是否已经新建过对象了。</p>
+<pre><code>{% codeblock 防止反射攻击 lang:java %}
+    public class Singleton {
+
+      private static boolean flag = false;
+
+      private static volatile Singleton instance = null;
+
+      private Singleton(){
+
+          if (!flag){
+              flag = true;
+          }else {
+              throw new RuntimeException("构造函数被调用多次");
+          }
+      }
+
+      public static Singleton getInstance() {
+          if (instance == null){
+              synchronized (Singleton.class){
+                  if (instance == null){
+                      instance = new Singleton();
+                  }
+              }
+          }
+          return instance;
+      }
+    }
+    {% endcodeblock %}
+</code></pre><p>当然这种方式也有一个缺点，那就是必须保证 Singleton.getInstance() 方法在反射之前调用，否则将不能正确获取单例对象。</p>
+<p>而且,既然我们可以通过反射创建出对象，那么也可以通过反射修改标志位的值，这样一来，使用标志位的方法就不能完全防止反射攻击了。</p>
+<h3 id="序列化攻击"><a href="#序列化攻击" class="headerlink" title="序列化攻击"></a>序列化攻击</h3><p>接下来我们看一下序列化如何破坏单例模式，以恶汉模式为例。</p>
+<pre><code>{% codeblock 序列化攻击 lang:java %}
+    public class Singleton implements Serializable{
+
+      private static final Singleton instance = new Singleton();
+
+      private Singleton(){}
+
+      public static Singleton getInstance() {
+          return instance;
+      }
+    }
+
+    public class Test {
+      public static void main(String[] args) throws IOException,ClassNotFoundException{
+
+          Singleton singleton1 = Singleton.getInstance();
+          Singleton singleton2;
+
+          FileOutputStream fos = new FileOutputStream("SerSingleton.obj");
+          ObjectOutputStream oos = new ObjectOutputStream(fos);
+          oos.writeObject(singleton1);
+          oos.flush();
+          oos.close();
+
+          FileInputStream fis = new FileInputStream("SerSingleton.obj");
+          ObjectInputStream ois = new ObjectInputStream(fis);
+          singleton2 = (Singleton)ois.readObject();
+
+          System.out.println(singleton1==singleton2);
+      }
+    }
+    {% endcodeblock %}
+</code></pre><p>输出结果为 <code>false</code> 表明我们的单例收到了攻击，那么如何防止这种情况呢？</p>
+<p>我们可以在被序列化的类中添加readResolve方法</p>
+<pre><code>{% codeblock 防止序列化攻击 lang:java %}
+    public class Singleton implements Serializable{
+
+      private static final Singleton instance = new Singleton();
+
+      private Singleton(){}
+
+      public static Singleton getInstance() {
+          return instance;
+      }
+
+      private Object readResolve(){
+          return instance;
+      }
+    }
+    {% endcodeblock %}
+</code></pre><p>说了这么多，不知道大家有没有这样一种感慨 「 都说单例模式是最简单的一种模式，这么还这么复杂，以后还让不让人活了 」。</p>
+<p>那么有没有一种又简单有能防止所有攻击的方法呢？</p>
+<h1 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h1><p>枚举( enum )是 Java1.5 之后新加的特性。</p>
+<p>大家一定很奇怪，为什么枚举可以实现单例呢？其实和 Java 的编译特性有关。因为枚举是 Java1.5 之后新加的，一般新加入的功能有一个很重要的问题需要解决，就是对以前代码的兼容性问题。而 Java 是通过 <em>语法糖</em> 的方式解决的。简单来说就是编写代码的时候可以使用新的关键字 <em>enum</em> 编写程序，但是 Java 编译器在编译成字节码的时候，还是会利用现有的技术编译成之前的 JVM 能够识别并正确运行的字节码，这就是语法糖技术。</p>
+<p>我们先来看一下枚举编写的单例是什么样子的。</p>
+<pre><code>{% codeblock 枚举 lang:java %}
+    public enum Singleton {
+
+      INSTANCE;
+
+      public static Singleton getInstance(){
+          return INSTANCE;
+      }
+
+      public void otherMethods(){
+          System.out.println("do something");
+      }
+    }
+    {% endcodeblock %}
+</code></pre><p>这段代码看起来很简单，我们定义了一个枚举类型 INSTANCE, 这就是我们需要的单例。但是为什么这样就能实现线程安全的单例呢？要解决这个疑问，我们必须把这段代码进行反编译，看看 java 编译器究竟是如何编译这段代码的。</p>
+<p>我们使用 java 自带的反编译工具 javap 就可以将这段代码反编译</p>
+<p>  <code>javap -c Singleton</code></p>
+<p>反编译结果如下：</p>
+<pre><code>{% codeblock 反编译 lang:java %}
+    public final class Singleton extends java.lang.Enum<singleton> {
+    public static final Singleton INSTANCE;
+
+    public static Singleton[] values();
+      Code:
+         0: getstatic     #1                  // Field $VALUES:[LSingleton;
+         3: invokevirtual #2                  // Method "[LSingleton;".clone:()Ljava/lang/Object;
+         6: checkcast     #3                  // class "[LSingleton;"
+         9: areturn
+
+    public static Singleton valueOf(java.lang.String);
+      Code:
+         0: ldc           #4                  // class Singleton
+         2: aload_0
+         3: invokestatic  #5                  // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+         6: checkcast     #4                  // class Singleton
+         9: areturn
+
+    public static Singleton getInstance();
+      Code:
+         0: getstatic     #7                  // Field INSTANCE:LSingleton;
+         3: areturn
+
+    public void otherMethods();
+      Code:
+         0: getstatic     #8                  // Field java/lang/System.out:Ljava/io/PrintStream;
+         3: ldc           #9                  // String do something
+         5: invokevirtual #10                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+         8: return
+
+    static {};
+      Code:
+         0: new           #4                  // class Singleton
+         3: dup
+         4: ldc           #11                 // String INSTANCE
+         6: iconst_0
+         7: invokespecial #12                 // Method "<init>":(Ljava/lang/String;I)V
+        10: putstatic     #7                  // Field INSTANCE:LSingleton;
+        13: iconst_1
+        14: anewarray     #4                  // class Singleton
+        17: dup
+        18: iconst_0
+        19: getstatic     #7                  // Field INSTANCE:LSingleton;
+        22: aastore
+        23: putstatic     #1                  // Field $VALUES:[LSingleton;
+        26: return
+    }
+    {% endcodeblock %}
+</init></singleton></code></pre><p>  可能这段代码对于刚刚接触 java 的人来说一时可能看不懂，但是我们只要关注到一下几点就好了。</p>
+<ol>
+<li><code>public final class Singleton extends java.lang.Enum&lt;Singleton&gt;</code> 这说明枚举类型实际上被 java 编译器通过语法糖转换成了不可变类，继承自 Enum<singleton> 类。</singleton></li>
+<li><code>public static final Singleton INSTANCE</code>,说明我们定义的枚举值 INSTANCE 实际上被 java 编译器转换成了不可变对象，只可以初始化一次。</li>
+<li>关注到 INSTANCE 实际上是在 static {} 这段代码里初始化的。也就是说， INSTANCE 是在 Singleton 类加载的时候初始化的，所以一旦 Singleton 类加载了，INSTANCE 也就初始化了，不能再改变了，这就实现了单例模式。</li>
+</ol>
+<p>然后如果我们尝试使用序列化或者反射的方式去攻击枚举单例，会发现都不能成功，这是由于 JVM 实现枚举的机制决定的。</p>
+<p>最后，引用一下 《Effective Java》一书中的话。</p>
+<blockquote><p>单元素的枚举类型已经成为实现Singleton的最佳方法。</p>
+<footer><strong>《Effective Java》</strong></footer></blockquote>  
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/Android从入门到精通公众号二维码.jpg" alt="冬夏 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的二维码，关注我的个人公众号：Android从入门到精通</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.jpeg" alt="冬夏 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.jpeg" alt="冬夏 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+            <a href="/tags/单例模式/" rel="tag"># 单例模式</a>
+          
+            <a href="/tags/线程安全/" rel="tag"># 线程安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/18/在阿里巴巴实习是什么体验/" rel="next" title="在阿里巴巴实习是什么体验">
+                <i class="fa fa-chevron-left"></i> 在阿里巴巴实习是什么体验
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTg4Ny84NDUx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpeg"
+                alt="冬夏" />
+            
+              <p class="site-author-name" itemprop="name">冬夏</p>
+              <p class="site-description motion-element" itemprop="description">一起学习Android相关技术</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/dongxiawu" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#懒汉模式"><span class="nav-number">2.</span> <span class="nav-text">懒汉模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程安全验证"><span class="nav-number">2.1.</span> <span class="nav-text">线程安全验证</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#同步方法"><span class="nav-number">3.</span> <span class="nav-text">同步方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#双重校验"><span class="nav-number">4.</span> <span class="nav-text">双重校验</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#恶汉模式"><span class="nav-number">5.</span> <span class="nav-text">恶汉模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静态方法"><span class="nav-number">6.</span> <span class="nav-text">静态方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静态内部类"><span class="nav-number">7.</span> <span class="nav-text">静态内部类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#防止单例受到攻击"><span class="nav-number">7.1.</span> <span class="nav-text">防止单例受到攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反射攻击"><span class="nav-number">7.1.1.</span> <span class="nav-text">反射攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化攻击"><span class="nav-number">7.1.2.</span> <span class="nav-text">序列化攻击</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#枚举"><span class="nav-number">8.</span> <span class="nav-text">枚举</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冬夏</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
