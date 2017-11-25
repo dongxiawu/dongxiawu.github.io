@@ -1,3 +1,5 @@
 /public
-debug.log
-
+*.log
+db.json
+node_modules/
+.deploy_git/
