@@ -28,7 +28,7 @@ permalink:
   {% asset_img USB_DEBUG.png %}
 
 * 添加 adb 到环境变量
-  * windows
+  - windows
 
     1. 我的电脑右键 -> 属性 -> 高级 -> 环境变量
 
