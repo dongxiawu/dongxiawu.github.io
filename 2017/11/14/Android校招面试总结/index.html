@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android,校招,面试,BAT," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="版权声明：本文为 冬夏 原创文章，可以随意转载，但请注明出处。  谨以此篇文章，纪念我的漫漫求职路。 掐指一算，从今年3月份开始复习准备实习生招聘，到10月底秋招正式结束，经历了半年的坎坷求职路。还好，结果还算满意，也想把这段时间的面试经验、总结和个人的一些看法分享给大家，希望大家都能找到满意的工作。">
+<meta name="keywords" content="Android,校招,面试,BAT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android校招面试总结">
+<meta property="og:url" content="https://dongxiawu.github.io/2017/11/14/Android校招面试总结/index.html">
+<meta property="og:site_name" content="Android 从入门到精通">
+<meta property="og:description" content="版权声明：本文为 冬夏 原创文章，可以随意转载，但请注明出处。  谨以此篇文章，纪念我的漫漫求职路。 掐指一算，从今年3月份开始复习准备实习生招聘，到10月底秋招正式结束，经历了半年的坎坷求职路。还好，结果还算满意，也想把这段时间的面试经验、总结和个人的一些看法分享给大家，希望大家都能找到满意的工作。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dongxiawu.github.io/2017/11/14/Android校招面试总结/说出你的故事.png">
+<meta property="og:image" content="https://dongxiawu.github.io/2017/11/14/Android校招面试总结/Android启动流程.jpeg">
+<meta property="og:image" content="https://dongxiawu.github.io/2017/11/14/Android校招面试总结/Activity生命周期.jpeg">
+<meta property="og:image" content="https://dongxiawu.github.io/2017/11/14/Android校招面试总结/IP报文格式.jpeg">
+<meta property="og:image" content="https://dongxiawu.github.io/2017/11/14/Android校招面试总结/TCP报文格式.png">
+<meta property="og:image" content="https://dongxiawu.github.io/2017/11/14/Android校招面试总结/MVC.png">
+<meta property="og:image" content="https://dongxiawu.github.io/2017/11/14/Android校招面试总结/MVP.png">
+<meta property="og:image" content="https://dongxiawu.github.io/2017/11/14/Android校招面试总结/MVVM.png">
+<meta property="og:image" content="https://dongxiawu.github.io/2017/11/14/Android校招面试总结/稳定排序.png">
+<meta property="og:image" content="https://dongxiawu.github.io/2017/11/14/Android校招面试总结/不稳定排序.png">
+<meta property="og:updated_time" content="2018-04-16T08:14:27.887Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android校招面试总结">
+<meta name="twitter:description" content="版权声明：本文为 冬夏 原创文章，可以随意转载，但请注明出处。  谨以此篇文章，纪念我的漫漫求职路。 掐指一算，从今年3月份开始复习准备实习生招聘，到10月底秋招正式结束，经历了半年的坎坷求职路。还好，结果还算满意，也想把这段时间的面试经验、总结和个人的一些看法分享给大家，希望大家都能找到满意的工作。">
+<meta name="twitter:image" content="https://dongxiawu.github.io/2017/11/14/Android校招面试总结/说出你的故事.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dongxiawu.github.io/2017/11/14/Android校招面试总结/"/>
+
+
+
+
+
+  <title>Android校招面试总结 | Android 从入门到精通</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9ea276f4c28c677ec59abff5fb178bea";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Android 从入门到精通</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">冬夏的个人小站</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dongxiawu.github.io/2017/11/14/Android校招面试总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冬夏">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Android 从入门到精通">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android校招面试总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-14T22:26:58+08:00">
+                2017-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <img src="/2017/11/14/Android校招面试总结/说出你的故事.png">
+<blockquote>
+<p>版权声明：本文为 <em>冬夏</em> 原创文章，可以随意转载，但请注明出处。</p>
+</blockquote>
+<p>谨以此篇文章，纪念我的漫漫求职路。</p>
+<p>掐指一算，从今年3月份开始复习准备实习生招聘，到10月底秋招正式结束，经历了半年的坎坷求职路。还好，结果还算满意，也想把这段时间的面试经验、总结和个人的一些看法分享给大家，希望大家都能找到满意的工作。</p>
+<a id="more"></a>
+<p>截至到目前为止，投过简历的公司有：<br>阿里巴巴，腾讯，百度，网易，网易游戏，华为，美团，CVTE，4399</p>
+<p>面试过的公司有：<br>阿里巴巴，腾讯，网易游戏，华为，美团，4399</p>
+<p>拿到offer的公司有：<br>阿里巴巴，网易游戏，美团，4399</p>
+<h1 id="文章主要内容"><a href="#文章主要内容" class="headerlink" title="文章主要内容"></a>文章主要内容</h1><ol>
+<li>面试过程中遇到的问题及简要答案</li>
+<li>每次面试后的总结</li>
+<li>校招总结及建议</li>
+</ol>
+<h1 id="面试过程中遇到的问题及简要答案"><a href="#面试过程中遇到的问题及简要答案" class="headerlink" title="面试过程中遇到的问题及简要答案"></a>面试过程中遇到的问题及简要答案</h1><h2 id="Java相关"><a href="#Java相关" class="headerlink" title="Java相关"></a>Java相关</h2><ul>
+<li><p>Q1：Java内存模型（4399）</p>
+<p>A1：堆、栈、方法区，程序计数器</p>
+</li>
+<li><p>Q2：Java如何实现垃圾回收（4399、阿里巴巴）</p>
+<p>A2：典型的垃圾回收算法包括</p>
+<ol>
+<li>Mark-Sweep（标记-清除）算法<br>优点：效率高，实现简单<br>缺点：产生内存碎片</li>
+<li>Copying（复制）算法<br>优点：实现简单、不容易产生内存碎片<br>缺点：可使用内容变为原来一半</li>
+<li>Mark-Compact（标记-整理）算法<br>优点：不容易产生内存碎片<br>缺点：，复杂、耗时</li>
+<li>Generational Collection（分代收集）算法<br>JVM根据对象存活时间将内存划分为永久代，老年代，新生代。<ol>
+<li>新生代垃圾回收算法：Copying（复制）算法</li>
+<li>老年代垃圾回收算法：Mark-Compact（标记-整理）算法</li>
+<li>永久代：垃圾回收不会发生在永久代，如果永久代满了或者是超过了临界值，会触发完全垃圾回收<br>(注: Java8中已经移除了永久代，新加了一个叫做元数据区(meta data)的native内存区)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Q3：Java发生垃圾回收时程序会怎么样（阿里巴巴)</p>
+<p>A3：stop the world</p>
+</li>
+<li><p>Q4：Java线程同步的几种方式（网易游戏）<br>A4：</p>
+<ol>
+<li>同步方法</li>
+<li>同步代码块</li>
+<li>wait与notify</li>
+<li>volatile</li>
+<li>重入锁</li>
+<li>ThreadLocal</li>
+<li>阻塞队列</li>
+</ol>
+</li>
+<li><p>Q5：一行代码从写完到执行过程中经历了什么？（阿里巴巴）</p>
+<p>A5：编译-加载-校验-准备-解析-使用-卸载</p>
+</li>
+<li><p>Q6：HashMap    和    HashTable的区别（阿里巴巴）<br>A6：</p>
+<ol>
+<li>HashMap非线程安全、HashTable线程安全</li>
+<li>支持key和value为null    不支持支持key和value为null</li>
+<li>HashMap在JDK1.8之后当链表长度大于8时自动转为红黑树，小于6转回来（设定两个阈值是为了不频繁发生转换）</li>
+</ol>
+</li>
+<li><p>Q7：Concurrenthashmap和Hashtable的区别（网易游戏）<br>A7：效率高：Concurrenthashmap锁的粒度（一个桶）比Hashtable（整个结构）小</p>
+</li>
+<li><p>Q8：创建线程的方法（阿里巴巴）</p>
+<p>A8：</p>
+<ol>
+<li>继承Thread类</li>
+<li>实现Runnable接口</li>
+<li>应用程序可以使用Executor框架来创建线程池</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li>Q9：线程池的种类及区别（网易游戏）<br>A9：<ol>
+<li>Executors.newFixedThreadPool(nThreads)：可重用的，固定线程数的线程池</li>
+<li>Executors.newCachedThreadPool()：根据需要创建线程</li>
+<li>Executors.newSingleThreadExecutor()：单个线程的线程池，特点：如果线程执行过程中被kill，会重新生成一个线程</li>
+<li>Executors.newScheduledThreadPool(corePoolSize)：可以调度的线程池，可以在指定延迟之后执行</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>Q10：Java异常（4399）<br>A10：Java的两种异常：checked异常和runtime异常，区别</p>
+<ol>
+<li>checked异常：调用方法需捕获，定义方法需声明</li>
+<li>runtime异常：调用方法不需捕获，定义方法不需声明</li>
+</ol>
+</li>
+<li><p>Q11：Java里引用的类型和区别（阿里巴巴）</p>
+<p>A11：</p>
+<ol>
+<li>强引用（Strong References）<br>强引用是使用最普遍的引用。如果一个对象具有强引用，那垃圾回收器绝不会回收它。当内存空间不足，Java虚拟机宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足的问题。(注：强引用其实也就是我们平时A a = new A()这个意思)</li>
+<li>软引用（SoftReference）<br>用来实现一些内存敏感的缓存(Soft references are for implementing memory-sensitive caches)，只要内存空间足够，对象就会保持不被回收。反之，当宿主进程的内存空间不足时，对象就会被GC回收。所以SoftReference意味着：hold on until you can’t.</li>
+<li>弱引用（WeakReference）<br>可以用来实现一些规范化映射（WeakHashMap），其中key或者value当它们不再被引用时可以自动被回收。当你想引用一个对象，但是这个对象有自己的生命周期，你不想介入这个对象的生命周期，这时候你就是用弱引用。这个引用不会在对象的垃圾回收判断中产生任何附加的影响。</li>
+<li>虚引用（PlantomReference）<br>与其他几种引用都不同，虚引用并不会决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收器回收。虚引用主要用来跟踪对象被垃圾回收器回收的活动。虚引用与软引用和弱引用的一个区别在于：虚引用必须和引用队列 （ReferenceQueue）联合使用。当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之 关联的引用队列中。</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>Q12：Java类加载机制（阿里巴巴）</p>
+<p>A12：</p>
+<ol>
+<li>父类委托（双亲委托）：先由父类加载器尝试加载该类，加载不成功时才尝试从自己的类路径中加载</li>
+<li>缓存机制：加载过的类存放在方法区，这就是为什么修改了class，必须重启JVM才生效的原因</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>Q13：==、equals、hashcode的区别与联系（4399）</p>
+<p>A13：</p>
+<ol>
+<li>==表示两个变量指向同一个对象</li>
+<li>覆盖equals一定要覆盖hashcode</li>
+<li>两个equals相等的对象hashcode一定相等，反之不然</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>Q14：为什么String要设计成不可变类（腾讯）</p>
+<p>A14：</p>
+<ol>
+<li>字符串常量池的需要</li>
+<li>允许String对象缓存HashCode</li>
+<li>安全性</li>
+</ol>
+</li>
+</ul>
+<h2 id="Android相关"><a href="#Android相关" class="headerlink" title="Android相关"></a>Android相关</h2><ul>
+<li><p>Q1：Android内存泄露情况分析（网易游戏）</p>
+<p>A1：</p>
+<ol>
+<li>单例造成的内存泄漏</li>
+<li>非静态内部类创建静态实例造成的内存泄漏（非静态内部类默认会持有外部类的引用）</li>
+<li>Handler造成的内存泄漏（Handler的生命周期和Activity不同造成的）Handler发送的Message尚未被处理,则MessageQueue持有Handler的引用(post方法)。而Handler又持有Activity的引用</li>
+<li>匿名内部类和线程造成的内存泄漏（匿名内部类持有外部类的引用,如果这时候将匿名内部类的引用传入一个异步线程，则有可能造成内存泄漏）</li>
+<li>资源未关闭造成的内存泄漏</li>
+</ol>
+</li>
+<li><p>Q2：Android启动流程（腾讯）</p>
+<p>A2：</p>
+<img src="/2017/11/14/Android校招面试总结/Android启动流程.jpeg">
+</li>
+</ul>
+<ul>
+<li><p>Q3：Android动画的种类（美团）</p>
+<p>A3：逐帧动画、补间动画、属性动画</p>
+</li>
+<li><p>Q4：ListView的优化（网易游戏，美团）</p>
+<p>A4：</p>
+<ol>
+<li>判断converView是否为空</li>
+<li>使用ViewHolder保存View的各个Widget引用。避免每次都重新findViewbyId</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>Q5：View的绘制机制（腾讯）</p>
+<p>A5：onMeasure()、onLayout()、onDraw()（这个问题很经典也很复杂，建议仔细研究）</p>
+</li>
+<li><p>Q6：Android的序列化方式（美团）</p>
+<p>A6：Serializable、Parcelable</p>
+</li>
+<li><p>Q7：Activity的四种启动模式及其区别（阿里巴巴）</p>
+<p>A7：</p>
+<ol>
+<li>standard：默认模式，在这个模式下，都会创建一个新的实例。因此，在这种模式下，可以有多个相同的实例，也允许多个相同Activity叠加。</li>
+<li>singleTop：可以有多个实例，但是不允许多个相同Activity叠加。即，如果Activity在栈顶的时候，启动相同的Activity，不会创建新的实例，而会调用其onNewIntent方法。</li>
+<li>singleTask：只有一个实例。在同一个应用程序中启动它的时候，若Activity不存在，则会在当前task创建一个新的实例，若存在，则会把task中在其之上的其它Activity destory掉并调用它的onNewIntent方法。如果是在别的应用程序中启动它，则会新建一个task，并在该task中启动这个Activity，singleTask允许别的Activity与其在一个task中共存，也就是说，如果我在这个singleTask的实例中再打开新的Activity，这个新的Activity还是会在singleTask的实例的task中。</li>
+<li>singleInstance：只有一个实例，并且这个实例独立运行在一个task中，这个task只有这个实例，不允许有别的Activity存在。</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>Q8： Android从按下图标到应用启动的过程（腾讯）</p>
+<p>A8：用户在Launcher程序里点击应用图标时，会通知ActivityManagerService启动应用的默认Activity，ActivityManagerService发现这个应用还未启动，则会通知Zygote进程孵化出应用进程，然后在这个dalvik应用进程里执行ActivityThread的main方法。应用进程接下来通知ActivityManagerService应用进程已启动，ActivityManagerService（绑定）保存应用进程的一个代理对象(applicationthread)，这样ActivityManagerService可以通过这个代理对象控制应用进程，然后ActivityManagerService通知应用进程创建入口Activity的实例，并执行它的生命周期方法。</p>
+</li>
+<li><p>Q9：如何保证service在后台不被杀死(网易游戏)</p>
+<p>A9：</p>
+<ol>
+<li>设置1像素Avticity，监听锁屏广播，服务在另外进程减少主进程使用内存（5.0以后会一起杀死进程组，所以不适合）</li>
+<li>设置前台服务，startForeground（降低kill概率）</li>
+<li>粘性服务，在onStartCommand中设置成START_STICKY，kill之后会重启</li>
+<li>捆绑系统服务</li>
+<li>双进程Service相互守护</li>
+<li>账号同步唤醒APP</li>
+<li>全家桶相互唤醒</li>
+<li>JobSheduler</li>
+<li>native进程方式</li>
+<li>设置高优先级（貌似无效）</li>
+<li>应用拆分</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>Q10：为什么一定要在UI线程更新视图（阿里巴巴、腾讯）</p>
+<p>A10：在移动设备中，UI的使用是绝对设备对于用户体验的重要因素之一。而Android系统当中的控件都不是线程安全的，这导致当使用多线程模式的时候在多个线程共同使用同一个UI控件时容易发生不可控的错误，而这是致命的。不过这里提一点的就是，在Activity的onResume执行之前，是可以在子线程里更新UI的，具体原因这里就不细讲了，有兴趣的可以自己去查。</p>
+</li>
+<li><p>Q11：Android进程间通信方式（美团）</p>
+<p>A11：</p>
+<ol>
+<li>AIDL</li>
+<li>Broadcast</li>
+<li>ContentProvider</li>
+<li>Binder</li>
+<li>Intent</li>
+<li>Socket</li>
+</ol>
+</li>
+<li><p>Q12：IntentFilter和Intent的匹配规则（美团）</p>
+<p>A12：Intent包括显式Intent和隐式Intent，显示Intent通过直接指定类名进行匹配。隐式Intent则与IntentFilter中的action、category、data进行匹配。</p>
+<p>action匹配规则</p>
+<ol>
+<li>一个intent-filter中可以有多个action</li>
+<li>intent中的action与intent-filter中有一个相同即可</li>
+<li>action区分大小写</li>
+</ol>
+<p>category匹配规则</p>
+<ol>
+<li>Intent中可以不存在category，但如果存在就必须匹配intent-filter其中一个</li>
+<li>系统在startActivity或者startActivityForResult的时候默认为Intent加上一个android.intent.category.DEAFAULT，所以必须在intent-filter中加上android.intent.category.DEFAULT这个category</li>
+</ol>
+<p>data匹配规则</p>
+<ol>
+<li><p>data由两部分组成，mimeType和URI。</p>
+<p>URI格式：://:[||]</p>
+<p>//示例<br>content://com.example.project:200/folder/subfolder/etc</p>
+<p>URI的scheme的默认值为content和file</p>
+<p>minType指数据类型</p>
+<p>匹配规则与action类似，只要有一个data匹配就可以</p>
+</li>
+</ol>
+</li>
+<li><p>Q13：Android常用布局，Activity生命周期（腾讯）</p>
+<p>A13：</p>
+<p>常用布局：</p>
+<ol>
+<li>RelativeLayout</li>
+<li>FrameLayout</li>
+<li>LinearLayout</li>
+<li>AbsoluteLayout</li>
+<li>GridLayout</li>
+<li>TableLayout</li>
+</ol>
+<p>生命周期：</p>
+<img src="/2017/11/14/Android校招面试总结/Activity生命周期.jpeg">
+</li>
+</ul>
+<ul>
+<li><p>Q14：Activity弹出Dialog会触发什么生命周期方法（腾讯）</p>
+<p>A14：如果是当前Activity弹出的dialog则不会执行Activity任何生命周期中的方法,只有其它Activity弹出了Dialog或者拦住了当前的Activity才会执行onPause()</p>
+</li>
+<li><p>Q15：Handle、Looper、MessageQueue之间的关系（网易游戏、阿里巴巴）</p>
+<p>A15：</p>
+<p>Handler：</p>
+<p>目的：线程间信息传递，比如非UI线程可以通过Handler发送信息到UI线程从而修改界面。</p>
+<p>Handler在创建的时候绑定到创建它的线程和线程的消息队列MessageQueue</p>
+<p>主要有两种使用方法：</p>
+<ol>
+<li>通过post或者postAtTime发送Runable对象</li>
+<li><p>通过sendMessage，sendMessageAtTime，sendMessageDelayed发送消息对象（Message），然后在Handler所在线程的handleMessage中处理（需要自己实现Handler的子类或者实现callback接口）。</p>
+<p>当程序运行时，进程为主线程分配一个消息队列MessageQueue，负责处理activities，broadcast，receivers等对象和它们创建的窗口，你可以新建自己的线程，然后通过Hanlder和主线程进行交流。</p>
+<p>Looper：每个线程只有一个Looper，不停地从MessageQueue中取消息出来处理，创建Looper对象的时候回创建MessageQueue对象（主线程系统为其创建了Looper，自己创建的线程必须调用Looper.prepare()创建Looper对象）</p>
+<p>MessageQueue：先进先出消息队列</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="计算机基础"><a href="#计算机基础" class="headerlink" title="计算机基础"></a>计算机基础</h2><ul>
+<li><p>Q1：死锁的条件和避免方法（网易游戏）</p>
+<p>A1：</p>
+<ol>
+<li>互斥：一个资源每次只能一个线程使用</li>
+<li>请求与保持：一个线程因请求资源而阻塞时，对已获得的资源保持不放</li>
+<li>不可剥夺：线程已获得的资源，在未使用完之前，不可强行剥夺</li>
+<li>循环等待：若干线程之间形成一种收尾相接的循环等待资源关系</li>
+</ol>
+<p>防止死锁的手段</p>
+<ol>
+<li>静态分配资源（破坏 请求与保持）</li>
+<li>层次分配（破坏 循环等待）</li>
+</ol>
+<p>死锁避免</p>
+<ol>
+<li>避免线程永久地占有系统资源</li>
+<li>防止进程在处于等待的情况下占用资源</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>Q2：线程和进程的区别（网易游戏）</p>
+<p>A2：</p>
+<ol>
+<li>进程是一个具有一定独立功能的程序关于某个数据集合的一次运行活动</li>
+<li>进程是操作系统进行资源分配和调度的一个独立单位</li>
+</ol>
+</li>
+<li><p>Q3：Http/Https原理分析以及Https如何保证安全（网易游戏，腾讯）</p>
+<p>A3：Https = Http + SSL，其实就是证书验证，公钥加密，私钥解密的整个流程，建议自己理解一下，常问</p>
+</li>
+<li><p>Q4：TCP为什么有四次挥手，但是只有三次握手（腾讯）</p>
+<p>A4：因为SYN和ACK和并在一起了</p>
+</li>
+<li><p>Q5：TCP和IP的报文格式</p>
+<p>A5：</p>
+<p>IP报文格式：</p>
+<img src="/2017/11/14/Android校招面试总结/IP报文格式.jpeg">
+<p>TCP报文格式：</p>
+<img src="/2017/11/14/Android校招面试总结/TCP报文格式.png">
+</li>
+</ul>
+<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><ul>
+<li><p>Q1：常用的设计模式有哪些（美团）</p>
+<p>A1：策略模式、观察者模式、装饰着模式、工厂模式、单例模式、外观模式、设配器模式、组合模式、状态模式，生成器模式等</p>
+</li>
+<li><p>Q2：单例模式怎么保证线程安全（网易游戏）</p>
+<p>A2：恶汉模式、懒汉模式、双重检查锁机制、静态内置类、枚举类型</p>
+</li>
+<li><p>Q3：MVP、MVC、MVVM的区别和联系（美团）</p>
+<p>A3：</p>
+<p>MVC：</p>
+<img src="/2017/11/14/Android校招面试总结/MVC.png">
+<p>MVP：</p>
+<img src="/2017/11/14/Android校招面试总结/MVP.png">
+<p>MVVM：</p>
+<img src="/2017/11/14/Android校招面试总结/MVVM.png">
+</li>
+</ul>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ul>
+<li><p>Q1：如何求一个数的平方根（网易游戏）</p>
+<p>A1：牛顿法、平方根倒数速算法、平方根倒数速算法</p>
+</li>
+<li><p>Q2：判断一个整数链表是否存在环路（阿里巴巴）</p>
+<p>A2：快慢指针</p>
+</li>
+<li><p>Q3：大数乘法（腾讯）</p>
+<p>A3：模拟手工计算法，分治算法、FFT算法</p>
+</li>
+<li><p>Q4: 各种排序算法的比较（腾讯）</p>
+<p>A4：</p>
+<ul>
+<li>稳定排序</li>
+</ul>
+<img src="/2017/11/14/Android校招面试总结/稳定排序.png">
+<ul>
+<li>不稳定的排序</li>
+</ul>
+<img src="/2017/11/14/Android校招面试总结/不稳定排序.png">
+</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li><p>Q1：自我介绍</p>
+<p>A1：建议时长1-3分钟，介绍内容包括姓名、学校、专业、研究方向、对应聘岗位所需技能的熟悉程度、为什么要应聘这个岗位、相关项目等，兴趣爱好一般不介绍，介绍的时候要和面试管有互动。</p>
+</li>
+<li><p>Q2：你觉得你比别人优秀的一点是什么？</p>
+<p>A2：选一个自己性格上的特点，不要选特长，而且要有例子说明你的这个优点对工作是有帮助的。比如应聘Android开发时说自己对技术很敏感，经常关注技术动态，并且对技术有自己的理解。</p>
+</li>
+<li><p>Q3：你的缺点</p>
+<p>A3：建议选一个从一方面看是缺点，但是从另外一方面看又是优点的特点。比如说自己很纠结细节，因此浪费了不少时间，但是从另一方面看又表现了自己很认真仔细。</p>
+</li>
+<li><p>Q4：印象最深刻的一件事</p>
+<p>A4：可以说和技术有关的或者和技术无关的，但是要体现出为什么这件事让你的印象那么深，比如让你明白了什么道理等。</p>
+</li>
+<li><p>Q5：还有什么问题问我</p>
+<p>A5：这个问题一般都是最后一个问题，一般可以问职业上的困惑，比如对前景的看法、对某向新技术的看法、咨询岗位工作内容、或者问自身的不足、之前回答不上的问题的思路等，要让面试官觉得你很重视这份工作，同时体现出自己很好学、上进。</p>
+</li>
+</ul>
+<h1 id="每次面试后的总结"><a href="#每次面试后的总结" class="headerlink" title="每次面试后的总结"></a>每次面试后的总结</h1><h2 id="春招"><a href="#春招" class="headerlink" title="春招"></a>春招</h2><ol>
+<li><p>网易游戏内推    一面挂</p>
+<p>面试总结：网易游戏是实习里面面得最早的，当时准备得并不好，所以挂了也很正常，出网易大厦的时候也没有觉得不开心，只想着抓紧复习准备其他的面试。</p>
+</li>
+<li><p>华为    录用池挂</p>
+<p>面试总结：华为的面试是面试过的所有公司里面最看不透的。面试基本不问基础知识，问项目也都是自己在说，没有追问细节，总体来说就是缺少互动。面试通过率高得吓人，基本都是刷学校的。还好我是个例外，不然也不会有后面的故事了，感谢华为不录之恩。</p>
+</li>
+<li><p>腾讯内推    三面挂</p>
+<p>面试总结：一面是电话面试，二面和三面是在腾讯总部面的。总体上来说表现得并不好，感觉腾讯非常注重底层原理和计算机网络，不是那种知道就行，还要知道为什么，这些没有长时间的积累和实际项目锻炼很难获取的知识。</p>
+</li>
+<li><p>阿里内推    四面挂</p>
+<p>面试总结：全程电话面试，一面，三面，四面都面得还可以，就是最重要的二面面得不好。阿里巴巴非常注重对技术的理解，比如一个问题除了用一种方法解决还能用什么方法解决，还有就是如果笔试的题当时不会做，过后有没有再去思考。</p>
+</li>
+<li><p>腾讯校招    一面挂</p>
+<p>面试总结：虽然是一面就挂了，但是面试官和我聊得还行，只是他问我如果让我做游戏我会怎么看，因为我觉得做游戏需要那种算法很厉害的人，当时我回答他说可能我的能力不够，所以就跪了。</p>
+</li>
+<li><p>4399    三面offer</p>
+<p>面试总结：面试4399的时候，是我找实习最低落的时光。周围的人基本都找到实习了，只有我没有，很虚。虽然最后没有去4399，但是还是很感谢4399的面试官给了我肯定。</p>
+</li>
+<li><p>阿里校招    三面offer</p>
+<p>面试总结：阿里的内推不通过就自动转校招了。当时我宿舍没有网络，所以三次视频面试都是在实验室面的。整个实验室的小伙伴包括导师都静静地听我和面试官吹水。面试阿里我觉得有两次让面试官眼前一亮的，一次是二面面试官问函数原理的时候我说出来了，让他惊讶了一下。还有一次是HR问我缺点的时候，我的回答让她表示了赞同。</p>
+</li>
+</ol>
+<h2 id="秋招"><a href="#秋招" class="headerlink" title="秋招"></a>秋招</h2><ol>
+<li><p>网易游戏    四面offer</p>
+<p>面试总结：网易游戏的招聘的时候指定了特定学校才能投简历，这样就限制了很多人了。虽然我是这个规定的受益者，但是我并不觉得这个规定好。面试的时候感觉网易游戏非常注重算法和基础。但是我的算法并不好，能拿到offer可能是因为我有了阿里的offer和有一些看法和面试官不谋而合把。</p>
+</li>
+<li><p>百度    放弃面试</p>
+<p>面试总结：百度的面试通知来得非常晚，当时我已经拿了阿里和网易游戏的offer了，再加上百度的岗位在北京，所以就放弃了。</p>
+</li>
+<li><p>腾讯内推    一面挂</p>
+<p>面试总结：接到腾讯的电话的时候我刚刚做上从杭州回广州的飞机，所以只能另外约时间。是微信部门打电话过来的，问了我阿里的项目，应用架构，开发遇到的问题，动态化框架的理解等。微信部门的要求很高，我也觉得我并没有达到他们的要求，不过还是感谢面试官。</p>
+</li>
+<li><p>美团内推    四面offer</p>
+<p>面试总结：美团是通过同学内推的，一面是电话面试，二面、三面是视频面试，四面是电话面试。感觉美团很注重实战能力，二面的时候直接就给我一张截图让我分析布局。感觉美团在技术上的积累还是不错的，个人也看好美团的发展前景，只是因为岗位在上海，最终还是拒了。</p>
+</li>
+<li><p>腾讯校招    一面挂</p>
+<p>面试总结：第四次面腾讯，我已经不抱希望了，果然，一面就挂了。不过还是感谢面试官给我指出了面试过程中的问题，不要带很多的语气词。</p>
+</li>
+</ol>
+<h1 id="校招总结及建议"><a href="#校招总结及建议" class="headerlink" title="校招总结及建议"></a>校招总结及建议</h1><ul>
+<li><p>就我了解的情况来说，今年周围同学就业情况并不太乐观。虽然人工智能大火导致了相应的岗位需求量大增，而且工资开得都比较高，40w+的也经常听到。但是与人工智能有关的机器学习，深度学习，数据挖掘等岗位大多只招聘硕士和博士，而且每个公司招聘的数量并没有开发的人数多，而且有加速饱和的趋势。</p>
+</li>
+<li><p>如果你现在还没有选择方向，那么在选择人工智能之前要先考虑好以下几点</p>
+<ol>
+<li>自己是真的喜欢和适合这个方向还是只是冲着高薪去的。如果你不是真的感兴趣，可能最后会很痛苦。</li>
+<li>自己的数学水平，特别是概率论和矩阵分析水平怎么样。如果理论知识不够最后很可能会沦为调参工程师，只是重复地做着别人的实验。</li>
+<li>不像做开发的门槛比较低，机器学习的从业人员大多具有比较高的学历和名校背景做背书，在这样的情况下要脱颖而出会比较困难，这点应该做好准备。</li>
+</ol>
+</li>
+<li><p>关于移动开发，现在的岗位需求量已经很小了，而且和前端的融合趋势已经很明显了。如果你没有基础，现在已经不建议学习移动开发了，性价比太低。当然，高端人才还是稀缺的，不管是对某个领域有比较深造诣的人才还是全栈人才。</p>
+</li>
+<li><p>关于后台，需求一直比较大，也比较稳定，技术更新换代对比移动端和前端也比较慢，如果你有兴趣，可以往后台发展。</p>
+</li>
+</ul>
+<p>最后，再次希望大家都能找到满意的工作！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/Android从入门到精通公众号二维码.jpg" alt="冬夏 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的二维码，关注我的个人公众号：Android从入门到精通</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.jpeg" alt="冬夏 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.jpeg" alt="冬夏 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/校招/" rel="tag"># 校招</a>
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+            <a href="/tags/BAT/" rel="tag"># BAT</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/18/在阿里巴巴实习是什么体验/" rel="prev" title="在阿里巴巴实习是什么体验">
+                在阿里巴巴实习是什么体验 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTg4Ny84NDUx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpeg"
+                alt="冬夏" />
+            
+              <p class="site-author-name" itemprop="name">冬夏</p>
+              <p class="site-description motion-element" itemprop="description">一起学习Android相关技术</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/dongxiawu" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文章主要内容"><span class="nav-number">1.</span> <span class="nav-text">文章主要内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#面试过程中遇到的问题及简要答案"><span class="nav-number">2.</span> <span class="nav-text">面试过程中遇到的问题及简要答案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java相关"><span class="nav-number">2.1.</span> <span class="nav-text">Java相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android相关"><span class="nav-number">2.2.</span> <span class="nav-text">Android相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机基础"><span class="nav-number">2.3.</span> <span class="nav-text">计算机基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式"><span class="nav-number">2.4.</span> <span class="nav-text">设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">2.5.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">2.6.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#每次面试后的总结"><span class="nav-number">3.</span> <span class="nav-text">每次面试后的总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#春招"><span class="nav-number">3.1.</span> <span class="nav-text">春招</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#秋招"><span class="nav-number">3.2.</span> <span class="nav-text">秋招</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#校招总结及建议"><span class="nav-number">4.</span> <span class="nav-text">校招总结及建议</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冬夏</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
