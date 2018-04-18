@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Android,JNI,cmake,Android Studio,FastCV," />
+  <meta name="keywords" content="Java,注解,注解处理器," />
 
 
 
@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="版权声明：本文为 冬夏 原创文章，可以随意转载，但请注明出处。  最近的项目需要在 Android 手机上进行摄像头视频采集、处理。所以需要使用上计算机视觉的库。一开始选择使用 OpenCV 开源库，具体使用参照我之前的文章AndroidStudio使用OpenCV的三种方式 但是 OpenCV 的速度并不能达到要求，同时无意中发现了一个叫做 FastCV 的计算机视觉库，于是就想试一下。但是">
-<meta name="keywords" content="Android,JNI,cmake,Android Studio,FastCV">
+<meta name="description" content="版权声明：本文为 冬夏 原创文章，可以随意转载，但请注明出处。">
+<meta name="keywords" content="Java,注解,注解处理器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FastCV Demo in Android Studio">
-<meta property="og:url" content="https://dongxiawu.github.io/2017/12/25/FastCV Demo in Android Studio/index.html">
+<meta property="og:title" content="Java注解与注解处理器">
+<meta property="og:url" content="https://dongxiawu.github.io/2018/04/18/Java注解与注解处理器/index.html">
 <meta property="og:site_name" content="Android 从入门到精通">
-<meta property="og:description" content="版权声明：本文为 冬夏 原创文章，可以随意转载，但请注明出处。  最近的项目需要在 Android 手机上进行摄像头视频采集、处理。所以需要使用上计算机视觉的库。一开始选择使用 OpenCV 开源库，具体使用参照我之前的文章AndroidStudio使用OpenCV的三种方式 但是 OpenCV 的速度并不能达到要求，同时无意中发现了一个叫做 FastCV 的计算机视觉库，于是就想试一下。但是">
+<meta property="og:description" content="版权声明：本文为 冬夏 原创文章，可以随意转载，但请注明出处。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://dongxiawu.github.io/2017/12/25/FastCV%20Demo%20in%20Android%20Studio/FastCV.jpg">
-<meta property="og:updated_time" content="2018-04-16T08:14:27.903Z">
+<meta property="og:image" content="https://dongxiawu.github.io/2018/04/18/Java注解与注解处理器/Java注解与注解处理器.jpg">
+<meta property="og:updated_time" content="2018-04-18T07:48:35.179Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FastCV Demo in Android Studio">
-<meta name="twitter:description" content="版权声明：本文为 冬夏 原创文章，可以随意转载，但请注明出处。  最近的项目需要在 Android 手机上进行摄像头视频采集、处理。所以需要使用上计算机视觉的库。一开始选择使用 OpenCV 开源库，具体使用参照我之前的文章AndroidStudio使用OpenCV的三种方式 但是 OpenCV 的速度并不能达到要求，同时无意中发现了一个叫做 FastCV 的计算机视觉库，于是就想试一下。但是">
-<meta name="twitter:image" content="https://dongxiawu.github.io/2017/12/25/FastCV%20Demo%20in%20Android%20Studio/FastCV.jpg">
+<meta name="twitter:title" content="Java注解与注解处理器">
+<meta name="twitter:description" content="版权声明：本文为 冬夏 原创文章，可以随意转载，但请注明出处。">
+<meta name="twitter:image" content="https://dongxiawu.github.io/2018/04/18/Java注解与注解处理器/Java注解与注解处理器.jpg">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://dongxiawu.github.io/2017/12/25/FastCV Demo in Android Studio/"/>
+  <link rel="canonical" href="https://dongxiawu.github.io/2018/04/18/Java注解与注解处理器/"/>
 
 
 
 
 
-  <title>FastCV Demo in Android Studio | Android 从入门到精通</title>
+  <title>Java注解与注解处理器 | Android 从入门到精通</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dongxiawu.github.io/2017/12/25/FastCV Demo in Android Studio/">
+    <link itemprop="mainEntityOfPage" href="https://dongxiawu.github.io/2018/04/18/Java注解与注解处理器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="冬夏">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">FastCV Demo in Android Studio</h1>
+          <h1 class="post-title" itemprop="name headline">Java注解与注解处理器</h1>
         
 
         <div class="post-meta">
@@ -338,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T22:27:41+08:00">
-                2017-12-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T15:43:06+08:00">
+                2018-04-18
               </time>
             
 
@@ -361,8 +361,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/FastCV/" itemprop="url" rel="index">
-                    <span itemprop="name">FastCV</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -398,97 +398,201 @@
       
 
       
-        <img src="/2017/12/25/FastCV%20Demo%20in%20Android%20Studio/FastCV.jpg">
+        <img src="/2018/04/18/Java注解与注解处理器/Java注解与注解处理器.jpg">
 <blockquote>
 <p>版权声明：本文为 <em>冬夏</em> 原创文章，可以随意转载，但请注明出处。</p>
 </blockquote>
-<p>最近的项目需要在 Android 手机上进行摄像头视频采集、处理。所以需要使用上计算机视觉的库。一开始选择使用 OpenCV 开源库，具体使用参照我之前的文章<br><a href="https://dongxiawu.github.io/2017/12/14/AndroidStudio%E4%BD%BF%E7%94%A8OpenCV%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/">AndroidStudio使用OpenCV的三种方式</a></p>
-<p>但是 OpenCV 的速度并不能达到要求，同时无意中发现了一个叫做 FastCV 的计算机视觉库，于是就想试一下。但是发现网络上几乎没有关于 FastCV 的 Demo 在 Android Studio 上成功编译的先例，于是只好利用 google、stackoverflow 和 FastCV 官网的自己自己尝试编译，踩了一些坑，最后终于搞定了。</p>
-<p>虽然最终因为某些原因并没有使用 FastCV 的 SDK，但是相信这些经验会对一些人有帮助，所以在这里分享给大家。</p>
 <a id="more"></a>
-<p>FastCV 是一个计算机视觉函数库，可以看做的是迷你版的 OpenCV，是高通公司开发的基于高通芯片的 SDK，目前支持的操作系统有：</p>
+<h1 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h1><h2 id="Retention"><a href="#Retention" class="headerlink" title="@Retention"></a>@Retention</h2><p>@Retention：保留期，表示注解的存活时间，取值为：</p>
 <ul>
-<li>Android</li>
-<li>Linux</li>
-<li>Windows RT</li>
-<li>Windows Phone 8</li>
+<li>RetentionPolicy.SOURCE：注解只在源码阶段保留，编译后忽略，主要起到提示、警告的作用，如@Override</li>
+<li>RetentionPolicy.CLASS：注解保留到编译后的class文件中，运行时忽略，即不会加载到虚拟机中，但是可以通过读文件的形式获取class文件中的注解，该类注解可以在编译时进行规则检查或自动生成某些代码，如@NonNull</li>
+<li>RetentionPolicy.RUNTIME：注解保留到运行时，可以在运行时获取，可以用作动态条件判断等功能，如@Inherited、@Documented</li>
 </ul>
-<p>FastCV 最大的特点就是快，这是因为高通公司针对自己的芯片做了特别的优化的缘故。缺点也特别明显，就是 FastCV 是闭源的，只提供 API，并不提供源码，而且只能运行在高通的芯片上。</p>
-<p>由于 FastCV 已经很久没有更新版本了，上一次更新是 16年3月，所以 FastCV 的 Demo 还是基于 eclipse 的，而且不能直接导入 Android Studio，所以需要移植。</p>
-<p>关于 Android JNI 的构建方式，目前有 ndk-build 和 cmake 两种方式，谷歌推荐 cmake，本工程也采用cmake</p>
-<p>开发环境: Android Studio3.0 + Ubuntu 16.04 LTS</p>
-<h1 id="搭建开发环境"><a href="#搭建开发环境" class="headerlink" title="搭建开发环境"></a>搭建开发环境</h1><ol>
-<li><p>首先在 FastCV 的官网上注册并下载 FastCV SDK<br><a href="https://developer.qualcomm.com/software/fastcv-sdk" target="_blank" rel="external">https://developer.qualcomm.com/software/fastcv-sdk</a></p>
-</li>
-<li><p>在下载目录下运行</p>
-<p>2.1 修改文件权限</p>
-<p><code>sudo chmod a+x fastcv-installer-android-1-7-1.bin</code></p>
-<p>2.2 安装软件</p>
-<p><code>sudo ./fastcv-installer-android-1-7-1.bin</code></p>
-<p>注意，安装 FastCV SDK 需要电脑已经安装 JDK，并且目前还不支持 JDK9，如果你的电脑安装的是 JDK9，那么请记得先切换一下 JDK 版本</p>
-</li>
-</ol>
-<h1 id="移植-FastCV-代码"><a href="#移植-FastCV-代码" class="headerlink" title="移植 FastCV 代码"></a>移植 FastCV 代码</h1><ol>
-<li><p>新建 Android Studio 工程（我选择移植的是 fastcvdemo 工程，所以新建工程时包名可以仿照 fastcvdemo 工程包名，减少工作量）</p>
-</li>
-<li><p>将 fastcvdemo/jni 内头文件复制到 project root/app/src/main/cpp/include 文件夹下</p>
-<p>将 fastcvdemo/jni 内源文件复制到 project root/app/src/main/cpp/source 文件夹下，</p>
-<p>将 fastcvdemo/res 内文件复制到 project root/app/src/main/res 文件夹下</p>
-<p>将 fastcvdemo/src 内文件复制到 project root/app/src/main/java 文件夹下</p>
-<p>将 sdk root/lib/Android/lib64/libfastcv.a复制到 project root/app/src/main/jniLibs 文件夹下</p>
-</li>
-</ol>
-<h1 id="编写-cmake-脚本"><a href="#编写-cmake-脚本" class="headerlink" title="编写 cmake 脚本"></a>编写 cmake 脚本</h1><p>为了让 Android Studio 能正确编译我们的程序，需要编写一个脚本告诉 Android Studio 我们的代码结构，这就是 cmake 的作用</p>
-<ol>
-<li><p>在 project root/app 目录下新建 CMakeLists.txt 文件，并添加以下内容:</p>
-<blockquote>
-<p>#指定 cmake 的最小版本，确保能使用某些新特性构建项目<br>   cmake_minimum_required(VERSION 3.4.1)</p>
-<p>#输出详细信息<br>   set(CMAKE_VERBOSE_MAKEFILE on)</p>
-<p>#设置头文件目录<br>   set(INCLUDE_DIR “${CMAKE_SOURCE_DIR}/src/main/cpp/include”)<br>   #设置源文件目录<br>   set(SOURCE_DIR “${CMAKE_SOURCE_DIR}/src/main/cpp/source”)<br>   #设置库目录<br>   set(LIBRARY_DIR “${CMAKE_SOURCE_DIR}/src/main/jniLibs”)</p>
-<p>#包含头文件<br>   include_directories(${INCLUDE_DIR})</p>
-<p>#添加 fastcv 静态库<br>   add_library(fastcv-lib STATIC IMPORTED)<br>   set_target_properties( fastcv-lib<br>   PROPERTIES IMPORTED_LOCATION<br>   “${LIBRARY_DIR}/libfastcv.a”)</p>
-<p>#添加 log 库<br>   find_library( log-lib log )</p>
-<p>find_path(GLES2_INCLUDE_DIR GLES2/gl2.h<br>   HINTS ${ANDROID_NDK})<br>   include_directories(${GLES2_INCLUDE_DIR})</p>
-<p>find_library(GLES2_LIBRARY libGLESv2.so<br>   HINTS ${GLES2_INCLUDE_DIR}/../lib)</p>
-<p>#包含子目录<br>   add_subdirectory(${SOURCE_DIR})</p>
-</blockquote>
-<p>由于 cmake 具有递归查找功能，所以要在每个包含的子目录下也新建 CMakeLists.txt 文件，具体添加内容查看 Demo</p>
-</li>
-<li><p>在app目录下的build.gradle 内添加：</p>
-<pre><code>android {
+<h2 id="Documented"><a href="#Documented" class="headerlink" title="@Documented"></a>@Documented</h2><p>@Documented:文档，含有该注解的注解能够被javadoc生成java文档</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="@Target"></a>@Target</h2><p>@Target：表示该注解的作用范围，取值为：</p>
+<ul>
+<li>ElementType.ANNOTATION_TYPE 可以给一个注解进行注解</li>
+<li>ElementType.CONSTRUCTOR 可以给构造方法进行注解</li>
+<li>ElementType.FIELD 可以给属性进行注解</li>
+<li>ElementType.LOCAL_VARIABLE 可以给局部变量进行注解</li>
+<li>ElementType.METHOD 可以给方法进行注解</li>
+<li>ElementType.PACKAGE 可以给一个包进行注解</li>
+<li>ElementType.PARAMETER 可以给一个方法内的参数进行注解</li>
+<li>ElementType.TYPE 可以给一个类型进行注解，比如类、接口、枚举</li>
+</ul>
+<h2 id="Inherited"><a href="#Inherited" class="headerlink" title="@Inherited"></a>@Inherited</h2><p>@Inherited：表示该注解是否可以被继承，当父类使用了可继承的注解，子类默认也含有该注解</p>
+<h2 id="Native"><a href="#Native" class="headerlink" title="@Native"></a>@Native</h2><p>@Native：表示变量来自本地代码</p>
+<h2 id="Repeatable"><a href="#Repeatable" class="headerlink" title="@Repeatable"></a>@Repeatable</h2><p>@Repeatable：Java 1.8新增，代表注解的类可以有多个取值</p>
+<h1 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>Java中，可以使用@interface关键字创建自定义注解：</p>
+<pre><code>@Documented
+@Target(ElementType.METHOD)
+@Inherited
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MethodInfo {
+    String author() default &quot;&quot;;
+    String date();
+    int version() default 1;
+    String comments();
+}
+</code></pre><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>使用@interface自定义注解时，自动继承了 java.lang.annotation.Annotation 接口</li>
+<li>注解中的方法，实际是声明了一个配置参数，参数名称就是方法名，返回值类型智能是基本类型、Class、String、enum、Annotation以及前面类型的数组。可以通过default来声明参数默认值。</li>
+<li>注解中的方法，不允许使用project、private修饰符，也无需加上public修饰符，这一点和接口类似。</li>
+<li>自定义注解需要在前面加上元注解，用以表示注解的使用方式及范围。</li>
+</ul>
+<h2 id="使用例子"><a href="#使用例子" class="headerlink" title="使用例子"></a>使用例子</h2><pre><code>@MethodInfo(comments = &quot;test method&quot;, author = &quot;dongxiawu&quot;, date = &quot;2018-04-18&quot;, version = 1)
+public String testMethod() {
+    return &quot;test method&quot;;
+}
+</code></pre><h3 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>接口中有默认值的属性，在使用时可以忽略，而没有默认值的属性则不能忽略，否则会报错。</li>
+</ul>
+<h1 id="注解解析"><a href="#注解解析" class="headerlink" title="注解解析"></a>注解解析</h1><h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>在代码中解析注解需要使用Java的反射机制，但只能解析 Retention 为 RetentionPolicy.RUNTIME 的注解。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><pre><code>public class Main {
+    public static void main(String[] args){
+        for (Method method : Main.class.getMethods()){
+            if (method.isAnnotationPresent(MethodInfo.class)){
+                MethodInfo methodInfo = method.getAnnotation(MethodInfo.class);
 
-  defaultConfig {
-    ...
-
-    externalNativeBuild {
-        cmake {
-            arguments &quot;-DANDROID_ARM_NEON=TRUE&quot;,
-                    &quot;-DVAR_NAME=ARG_1 ARG_2&quot;,
-                    &quot;-DANDROID_CPP_FEATURES=rtti exceptions&quot;
-            cppFlags &quot;-std=c++11&quot;, &quot;-frtti&quot;, &quot;-fexceptions&quot;
+                System.out.println(&quot;comments: &quot; + methodInfo.comments() + &quot; author: &quot; + methodInfo.author()
+                        + &quot; date:&quot; + methodInfo.date() + &quot; version: &quot; + methodInfo.version());
+            }
         }
     }
 
-    ndk {
-        //只支持高通指令集
-        abiFilters &apos;arm64-v8a&apos;
+    @MethodInfo(comments = &quot;test method&quot;, author = &quot;dongxiawu&quot;, date = &quot;2018-04-18&quot;, version = 1)
+    public String testMethod() {
+        return &quot;test method&quot;;
     }
+}
+</code></pre><h1 id="注解处理器"><a href="#注解处理器" class="headerlink" title="注解处理器"></a>注解处理器</h1><p>在运行时进行注释解析只能解析只能解析 Retention 为 RetentionPolicy.RUNTIME 的注解，对于  Retention 为 RetentionPolicy.SOURCE 和 RetentionPolicy.CLASS 的注解由于分别在编译完成后和加载到JVM时消除了，所以不能在运行时获取到，这时就需要注解处理器，在编译器是能够获取注解并进行相应操作。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>注解处理器(Annotation Processor)是javac内置的一个用于编译时扫描和处理注解(Annotation)的工具。简单的说，在源代码编译阶段，通过注解处理器，我们可以获取源文件内注解(Annotation)相关内容。</p>
+<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><p>由于注解处理器可以在程序编译阶段工作，所以我们可以在编译期间通过注解处理器进行我们需要的操作。比较常用的用法就是在编译期间获取相关注解数据，然后动态生成.java源文件（让机器帮我们写代码），通常是自动产生一些有规律性的重复代码，解决了手工编写重复代码的问题，大大提升编码效率。</p>
+<p>另外一点好处就是由于是在编译器对代码进行处理，所以对代码的运行效率没有影响。（如果是在运行时对注解进行处理，如Retention 为 RetentionPolicy.RUNTIME 的注解，则会占用运行时间）</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
+<li><p>定义自己的注解处理器，首先要继承 Processor 接口，不过为了不实现接口的全部方法，可以选择继承 AbstractProcessor 抽象类，并实现 process 方法。</p>
+</li>
+<li><p>在编译期间使用自己定义的注解处理器，主要有两种方法：</p>
+<ol>
+<li>使用 <code>-processor</code> 选项指定注解处理器的位置，如 <code>javac -processor Myprocessor Main.java</code></li>
+<li>将注解处理器打包成jar包，并采用<code>-processorpath</code>等选项指定路径，如<code>javac -processorpath processor.jar Main.java</code>，同时还需要在 jar 包中添加自定义的 processor 类名信息，以便编译过程中能够找到正确的 Processor，具体方法为：在 META-INF/services/ 文件夹下新建 javax.annotation.processing.Processor 文件，并在其中添加对应的 processor 类名信息。</li>
+</ol>
+</li>
+</ol>
+<p>注：也可以使用 gradle 自动构建，如google 的 <code>com.google.auto.service:auto-service</code> 库</p>
+<h2 id="使用例子-1"><a href="#使用例子-1" class="headerlink" title="使用例子"></a>使用例子</h2><pre><code>@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.SOURCE)
+@Documented
+public @interface Persistent {
+    String table();
 }
 
-externalNativeBuild {
-    cmake{
-        path &quot;CMakeLists.txt&quot;
-    }
-  }
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.SOURCE)
+@Documented
+public @interface Id {
+    String column();
+    String type();
+    String generator();
 }
-</code></pre></li>
-</ol>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>到这里，就可以正常编译并运行 FastCV Demo 了，Demo 提供的各种图像处理操作都能达到实时性的效果，但是由于 FastCV SDK 的缺点很明显，只支持高通 CPU 和不开源，所以网上资料少也就不奇怪了。</p>
-<p>关于FastCV Demo，我上传到了 github上，请自行下载。<br><a href="https://github.com/dongxiawu/FastcvDemo" target="_blank" rel="external">https://github.com/dongxiawu/FastcvDemo</a></p>
-<p>参考资料：</p>
-<p>[1] <a href="https://developer.qualcomm.com/software/fastcv-sdk" target="_blank" rel="external">https://developer.qualcomm.com/software/fastcv-sdk</a></p>
-<p>[2] <a href="https://cmake.org/cmake-tutorial/" target="_blank" rel="external">https://cmake.org/cmake-tutorial/</a></p>
-<p>[3] <a href="https://developer.android.google.cn/studio/projects/add-native-code.html?hl=zh-cn" target="_blank" rel="external">https://developer.android.google.cn/studio/projects/add-native-code.html?hl=zh-cn</a></p>
+
+@Documented
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.SOURCE)
+public @interface Property {
+    String column();
+    String type();
+}
+
+@Persistent(table = &quot;persion_inf&quot;)
+public class Persion {
+    @Id(column = &quot;person_id&quot;, type = &quot;integer&quot;, generator = &quot;identity&quot;)
+    private int id;
+    @Property(column = &quot;person_name&quot;, type = &quot;string&quot;)
+    private String name;
+    @Property(column = &quot;person_age&quot;, type = &quot;integer&quot;)
+    private int age;
+
+    public Persion(){
+
+    }
+
+    public Persion(int id, String name, int age){
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
+}
+
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
+@SupportedAnnotationTypes({&quot;Persistent&quot;,&quot;Property&quot;,&quot;Id&quot;})
+public class MyProcessor extends AbstractProcessor {
+
+    Elements elementUtils;
+
+    @Override
+    public synchronized void init(ProcessingEnvironment processingEnv) {
+        super.init(processingEnv);
+        elementUtils = processingEnv.getElementUtils();
+    }
+
+    @Override
+    public boolean process(Set&lt;? extends TypeElement&gt; annotations, RoundEnvironment roundEnv) {
+
+        PrintStream ps = null;
+        try {
+            for (Element t : roundEnv.getElementsAnnotatedWith(Persistent.class)){
+                Name clazzName = t.getSimpleName();
+                Persistent per = t.getAnnotation(Persistent.class);
+                ps = new PrintStream(new FileOutputStream(clazzName + &quot;.txt&quot;));
+                ps.println(&quot;table: &quot; + per.table());
+
+                for (Element f : t.getEnclosedElements()){
+                    if (f.getKind() == ElementKind.FIELD){
+                        Id id = f.getAnnotation(Id.class);
+                        if (id != null){
+                            ps.println(&quot;id: &quot; +&quot; name: &quot; + f.getSimpleName() +&quot; column: &quot; + id.column()
+                                    + &quot; type: &quot; + id.type() + &quot; generator: &quot; + id.generator());
+                        }
+
+                        Property property = f.getAnnotation(Property.class);
+                        if (property != null){
+                            ps.println(&quot;property: &quot; +&quot; name: &quot; + f.getSimpleName() +&quot; column: &quot; + property.column()
+                                    + &quot; type: &quot; + property.type());
+                        }
+                    }
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (ps != null){
+                try {
+                    ps.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
+        return true;
+    }
+}
+</code></pre><p>编译命令 <code>javac -processor MyProcessor Persion.java</code></p>
+<p>结果输出一个文件，内容为：</p>
+<pre><code>table: persion_inf
+id:  name: id column: person_id type: integer generator: identity
+property:  name: name column: person_name type: string
+property:  name: age column: person_age type: integer
+</code></pre><h2 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h2><p>自定义注解处理器前可以加上三个注解</p>
+<ul>
+<li>@SupportedSourceVersion()：支持版本</li>
+<li>@SupportedAnnotationTypes()：支持的注解</li>
+<li>@SupportedOptions()：支持的选项</li>
+</ul>
 
       
     </div>
@@ -543,15 +647,11 @@ externalNativeBuild {
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/JNI/" rel="tag"># JNI</a>
+            <a href="/tags/注解/" rel="tag"># 注解</a>
           
-            <a href="/tags/cmake/" rel="tag"># cmake</a>
-          
-            <a href="/tags/Android-Studio/" rel="tag"># Android Studio</a>
-          
-            <a href="/tags/FastCV/" rel="tag"># FastCV</a>
+            <a href="/tags/注解处理器/" rel="tag"># 注解处理器</a>
           
         </div>
       
@@ -564,8 +664,8 @@ externalNativeBuild {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/14/AndroidStudio使用OpenCV的三种方式/" rel="next" title="AndroidStudio使用OpenCV的三种方式">
-                <i class="fa fa-chevron-left"></i> AndroidStudio使用OpenCV的三种方式
+              <a href="/2018/04/16/Android权限管理/" rel="next" title="Android权限管理">
+                <i class="fa fa-chevron-left"></i> Android权限管理
               </a>
             
           </div>
@@ -573,10 +673,6 @@ externalNativeBuild {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/31/2017年度总结/" rel="prev" title="2017年度总结">
-                2017年度总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -753,7 +849,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建开发环境"><span class="nav-number">1.</span> <span class="nav-text">搭建开发环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#移植-FastCV-代码"><span class="nav-number">2.</span> <span class="nav-text">移植 FastCV 代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写-cmake-脚本"><span class="nav-number">3.</span> <span class="nav-text">编写 cmake 脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#元注解"><span class="nav-number">1.</span> <span class="nav-text">元注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Retention"><span class="nav-number">1.1.</span> <span class="nav-text">@Retention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Documented"><span class="nav-number">1.2.</span> <span class="nav-text">@Documented</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Target"><span class="nav-number">1.3.</span> <span class="nav-text">@Target</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inherited"><span class="nav-number">1.4.</span> <span class="nav-text">@Inherited</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Native"><span class="nav-number">1.5.</span> <span class="nav-text">@Native</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Repeatable"><span class="nav-number">1.6.</span> <span class="nav-text">@Repeatable</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义注解"><span class="nav-number">2.</span> <span class="nav-text">自定义注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">2.1.1.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用例子"><span class="nav-number">2.2.</span> <span class="nav-text">使用例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注解解析"><span class="nav-number">3.</span> <span class="nav-text">注解解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本原理"><span class="nav-number">3.1.</span> <span class="nav-text">基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">3.2.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注解处理器"><span class="nav-number">4.</span> <span class="nav-text">注解处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">4.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用途"><span class="nav-number">4.2.</span> <span class="nav-text">用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法"><span class="nav-number">4.3.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用例子-1"><span class="nav-number">4.4.</span> <span class="nav-text">使用例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项-2"><span class="nav-number">4.5.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></div>
             
 
           </div>
